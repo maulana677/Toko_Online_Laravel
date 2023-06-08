@@ -38,5 +38,10 @@ Route::get('/dashboard/settings', [App\Http\Controllers\DashboardSettingControll
 //Account
 Route::get('/dashboard/account', [App\Http\Controllers\DashboardSettingController::class, 'account'])->name('dashboard-settings-account');
 
+// ->middleware(['auth','admin'])
+Route::prefix('admin')->namespace('Admin')->group(function() {
+    Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin-dashboard');
+});
+
 Auth::routes();
 
