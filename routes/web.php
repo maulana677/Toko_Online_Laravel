@@ -44,6 +44,7 @@ Route::prefix('admin')->namespace('Admin')->group(function() {
     Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin-dashboard');
     Route::get('/category', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('category');
     Route::get('/category/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('category_create');
+    Route::post('/category/store', [App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('category_store');
     Route::get('/category/edit/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('category_edit');
     Route::post('/category/update/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('category_update');
     Route::get('/category/delete/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('category_delete');
