@@ -32,7 +32,7 @@ class CategoryController extends Controller
                                         Aksi
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" hfref="' . route('category_edit', $item->id) . '">
+                                    <a class="dropdown-item" href="' . route('category_edit', $item->id) . '">
                                         Sunting
                                     </a>
                                     <form action="'. route('category_delete', $item->id) .'" method="POST">
@@ -92,7 +92,11 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $item = Category::findOrFail($id);
+
+        return view('pages.admin.category.edit', [
+            'item' => $item
+        ]);
     }
 
     /**
@@ -100,7 +104,16 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, string $id)
     {
-        //
+        $data = $request->all();
+
+        $data['slug'] = Str::slug($request->name);
+        $data['photo'] = $request->file('photo')->store('assets/category','public');
+
+        $item = Category::findOrFail($id);
+
+        $item->update($data);
+
+        return redirect()->route('category');
     }
 
     /**
