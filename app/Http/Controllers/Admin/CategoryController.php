@@ -35,8 +35,8 @@ class CategoryController extends Controller
                                     <a class="dropdown-item" href="' . route('category_edit', $item->id) . '">
                                         Sunting
                                     </a>
-                                    <form action="'. route('category_delete', $item->id) .'" method="POST">
-                                        ' . method_field('delete') . csrf_field() .'
+                                    <form action="' . route('category_destroy', $item->id) . '" method="POST">
+                                        ' . method_field('delete') . csrf_field() . '
                                         <button type="submit" class="dropdown-item text-danger">
                                             Hapus
                                         </button>
@@ -121,6 +121,9 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $item = Category::findOrFail($id);
+        $item->delete();
+
+        return redirect()->route('category');
     }
 }
