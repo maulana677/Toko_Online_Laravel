@@ -52,7 +52,7 @@
               Transactions
             </a>
             <a
-              href="#"
+              href="{{ route('user') }}"
               class="list-group-item list-group-item-action"
             >
               Users

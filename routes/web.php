@@ -48,6 +48,13 @@ Route::prefix('admin')->namespace('Admin')->group(function() {
     Route::get('/category/edit/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('category_edit');
     Route::post('/category/update/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('category_update');
     Route::delete('/category/delete/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('category_destroy');
+
+    Route::get('/user', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('user');
+    Route::get('/user/create', [App\Http\Controllers\Admin\UserController::class, 'create'])->name('user_create');
+    Route::post('/user/store', [App\Http\Controllers\Admin\UserController::class, 'store'])->name('user_store');
+    Route::get('/user/edit/{id}', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('user_edit');
+    Route::post('/user/update/{id}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('user_update');
+    Route::delete('/user/delete/{id}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('user_destroy');
 });
 
 Auth::routes();
