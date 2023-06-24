@@ -49,12 +49,21 @@ Route::prefix('admin')->namespace('Admin')->group(function() {
     Route::post('/category/update/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('category_update');
     Route::delete('/category/delete/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('category_destroy');
 
+    //Users
     Route::get('/user', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('user');
     Route::get('/user/create', [App\Http\Controllers\Admin\UserController::class, 'create'])->name('user_create');
     Route::post('/user/store', [App\Http\Controllers\Admin\UserController::class, 'store'])->name('user_store');
     Route::get('/user/edit/{id}', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('user_edit');
     Route::post('/user/update/{id}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('user_update');
     Route::delete('/user/delete/{id}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('user_destroy');
+
+    //Product
+    Route::get('/product', [App\Http\Controllers\Admin\ProductController::class, 'index'])->name('product');
+    Route::get('/product/create', [App\Http\Controllers\Admin\ProductController::class, 'create'])->name('product_create');
+    Route::post('/product/store', [App\Http\Controllers\Admin\ProductController::class, 'store'])->name('product_store');
+    Route::get('/product/edit/{id}', [App\Http\Controllers\Admin\UsproductController::class, 'edit'])->name('product_edit');
+    Route::post('/product/update/{id}', [App\Http\Controllers\Admin\ProductController::class, 'update'])->name('product_update');
+    Route::delete('/product/delete/{id}', [App\Http\Controllers\Admin\ProductController::class, 'destroy'])->name('product_destroy');
 });
 
 Auth::routes();
