@@ -61,7 +61,7 @@ Route::prefix('admin')->namespace('Admin')->group(function() {
     Route::get('/product', [App\Http\Controllers\Admin\ProductController::class, 'index'])->name('product');
     Route::get('/product/create', [App\Http\Controllers\Admin\ProductController::class, 'create'])->name('product_create');
     Route::post('/product/store', [App\Http\Controllers\Admin\ProductController::class, 'store'])->name('product_store');
-    Route::get('/product/edit/{id}', [App\Http\Controllers\Admin\UsproductController::class, 'edit'])->name('product_edit');
+    Route::get('/product/edit/{id}', [App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('product_edit');
     Route::post('/product/update/{id}', [App\Http\Controllers\Admin\ProductController::class, 'update'])->name('product_update');
     Route::delete('/product/delete/{id}', [App\Http\Controllers\Admin\ProductController::class, 'destroy'])->name('product_destroy');
 });
