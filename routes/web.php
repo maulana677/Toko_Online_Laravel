@@ -64,6 +64,12 @@ Route::prefix('admin')->namespace('Admin')->group(function() {
     Route::get('/product/edit/{id}', [App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('product_edit');
     Route::post('/product/update/{id}', [App\Http\Controllers\Admin\ProductController::class, 'update'])->name('product_update');
     Route::delete('/product/delete/{id}', [App\Http\Controllers\Admin\ProductController::class, 'destroy'])->name('product_destroy');
+
+    //Product
+    Route::get('/product-gallery', [App\Http\Controllers\Admin\ProductGalleryController::class, 'index'])->name('product-gallery');
+    Route::get('/product-gallery/create', [App\Http\Controllers\Admin\ProductGalleryController::class, 'create'])->name('product-gallery_create');
+    Route::post('/product-gallery/store', [App\Http\Controllers\Admin\ProductGalleryController::class, 'store'])->name('product-gallery_store');
+    Route::delete('/product-gallery/delete/{id}', [App\Http\Controllers\Admin\ProductGalleryController::class, 'destroy'])->name('product-gallery_destroy');
 });
 
 Auth::routes();
