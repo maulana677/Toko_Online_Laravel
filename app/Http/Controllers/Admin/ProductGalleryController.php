@@ -35,10 +35,7 @@ class ProductGalleryController extends Controller
                                         Aksi
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="' . route('product_edit', $item->id) . '">
-                                        Sunting
-                                    </a>
-                                    <form action="' . route('product_destroy', $item->id) . '" method="POST">
+                                    <form action="' . route('product-gallery_destroy', $item->id) . '" method="POST">
                                         ' . method_field('delete') . csrf_field() . '
                                         <button type="submit" class="dropdown-item text-danger">
                                             Hapus
@@ -49,10 +46,10 @@ class ProductGalleryController extends Controller
                         </div>
                     ';
                 })
-                ->editColumn('photos', function($item){
-                    return $item->photos ? '<img src="'. Storage::url($item->photos) .'" style="max-height: 80px;" />' : '';
+                ->editColumn('photo', function($item){
+                    return $item->photo ? '<img src="'. Storage::url($item->photo) .'" style="max-height: 80px;" />' : '';
                 })
-                ->rawColumns(['action', 'photos'])
+                ->rawColumns(['action', 'photo'])
                 ->make();
         }
 
@@ -64,12 +61,10 @@ class ProductGalleryController extends Controller
      */
     public function create()
     {
-        $users = User::all();
-        $categories = Category::all();
+        $products = Product::all();
 
         return view('pages.admin.product-gallery.create', [
-            'users' => $users,
-            'categories' => $categories
+            'products' => $products
         ]);
     }
 
@@ -80,11 +75,11 @@ class ProductGalleryController extends Controller
     {
         $data = $request->all();
 
-        $data['slug'] = Str::slug($request->name);
+        $data['photo'] = $request->file('photo')->store('assets/product','public');
 
-        Product::create($data);
+        ProductGallery::create($data);
 
-        return redirect()->route('product');
+        return redirect()->route('product-gallery');
     }
 
     /**
@@ -100,15 +95,7 @@ class ProductGalleryController extends Controller
      */
     public function edit(string $id)
     {
-        $item = Product::findOrFail($id);
-        $users = User::all();
-        $categories = Category::all();
-
-        return view('pages.admin.product-.edit', [
-            'item' => $item,
-            'users' => $users,
-            'categories' => $categories
-        ]);
+        //
     }
 
     /**
@@ -116,15 +103,7 @@ class ProductGalleryController extends Controller
      */
     public function update(ProductGalleryRequest $request, string $id)
     {
-        $data = $request->all();
-
-        $item = Product::findOrFail($id);
-
-        $data['slug'] = Str::slug($request->name);
-
-        $item->update($data);
-
-        return redirect()->route('product');
+        //
     }
 
     /**
