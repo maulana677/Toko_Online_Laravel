@@ -111,9 +111,9 @@ class ProductGalleryController extends Controller
      */
     public function destroy(string $id)
     {
-        $item = Product::findOrFail($id);
+        $item = ProductGallery::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('product');
+        return redirect()->route('product-gallery');
     }
 }
