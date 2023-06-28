@@ -63,8 +63,13 @@
                   >Settings</a
                 >
                 <div class="dropdown-divider"></div>
-                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
+                <a href="{{ route('logout') }}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
                     class="dropdown-item">Logout</a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                      @csrf
+                    </form>
               </div>
             </li>
             <li class="nav-item">
