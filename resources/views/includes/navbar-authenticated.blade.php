@@ -45,7 +45,7 @@
                     <a href="#" class="nav-link"> Hi, Angga </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('cart') }}" class="nav-link d-inline-block"> Cart </a>
+                    <a href="#" class="nav-link d-inline-block"> Cart </a>
                 </li>
             </ul>
         </div>
