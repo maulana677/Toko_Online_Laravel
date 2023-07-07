@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TransactionDetail extends Model
 {
+    protected $table = 'transactions_details';
     /**
      * The attributes that are mass assignable.
      *
