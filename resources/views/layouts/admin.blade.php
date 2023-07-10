@@ -22,10 +22,13 @@
             <!-------Sidebar------>
             <div class="border-right" id="sidebar-wrapper">
                 <div class="sidebar-heading text-center">
-                    <img src="/images/admin.png" alt="" class="my-4" style="max-width: 150px;" />
+                    <a href="{{ route('home') }}">
+                        <img src="/images/admin.png" alt="" class="my-4" style="max-width: 150px;" />
+                    </a>
                 </div>
                 <div class="list-group list-group-flush">
-                    <a href="{{ route('admin-dashboard') }}" class="list-group-item list-group-item-action">
+                    <a href="{{ route('admin-dashboard') }}"
+                        class="list-group-item list-group-item-action {{ request()->is('admin') ? 'active' : '' }}">
                         Dashboard
                     </a>
                     <a href="{{ route('product') }}"
@@ -33,23 +36,29 @@
                         Products
                     </a>
                     <a href="{{ route('product-gallery') }}"
-                        class="list-group-item list-group-item-action {{ request()->is('admin/product-gallery*') ? 'active' : '' }}">
+                        class="list-group-item list-group-item-action {{ request()->is('admin/product-gallery') ? 'active' : '' }}">
                         Galleries
                     </a>
                     <a href="{{ route('category') }}"
-                        class="list-group-item list-group-item-action {{ request()->is('admin/categories*') ? 'active' : '' }}">
+                        class="list-group-item list-group-item-action {{ request()->is('admin/category') ? 'active' : '' }}">
                         Categories
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action">
+                    <a href="{{ route('transaction') }}"
+                        class="list-group-item list-group-item-action {{ request()->is('admin/transaction') ? 'active' : '' }}">
                         Transactions
                     </a>
                     <a href="{{ route('user') }}"
-                        class="list-group-item list-group-item-action {{ request()->is('admin/user*') ? 'active' : '' }}">
+                        class="list-group-item list-group-item-action {{ request()->is('admin/user') ? 'active' : '' }}">
                         Users
                     </a>
-                    <a href="/index.html" class="list-group-item list-group-item-action">
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                        class="list-group-item list-group-item-action">
                         Sign Out
                     </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </div>
             </div>
 
@@ -72,17 +81,24 @@
                                         data-toggle="dropdown">
                                         <img src="/images/icon-user.png" alt=""
                                             class="rounded-circle mr-2 profile-picture" />
-                                        Hi, Angga
+                                        Hi, {{ Auth::user()->name }}
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a href="/" class="dropdown-item">Logout</a>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                            class="dropdown-item">Logout</a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
                                     </div>
                                 </li>
                             </ul>
 
                             <ul class="navbar-nav d-block d-lg-none">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link"> Hi, Angga </a>
+                                    <a href="#" class="nav-link"> Hi, {{ Auth::user()->name }} </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link d-inline-block"> Cart </a>

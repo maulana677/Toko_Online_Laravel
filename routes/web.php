@@ -84,11 +84,17 @@ Route::prefix('admin')->namespace('Admin')->middleware(['auth','admin'])->group(
     Route::post('/product/update/{id}', [App\Http\Controllers\Admin\ProductController::class, 'update'])->name('product_update');
     Route::delete('/product/delete/{id}', [App\Http\Controllers\Admin\ProductController::class, 'destroy'])->name('product_destroy');
 
-    //Product
+    //Product gallery
     Route::get('/product-gallery', [App\Http\Controllers\Admin\ProductGalleryController::class, 'index'])->name('product-gallery');
     Route::get('/product-gallery/create', [App\Http\Controllers\Admin\ProductGalleryController::class, 'create'])->name('product-gallery_create');
     Route::post('/product-gallery/store', [App\Http\Controllers\Admin\ProductGalleryController::class, 'store'])->name('product-gallery_store');
     Route::delete('/product-gallery/delete/{id}', [App\Http\Controllers\Admin\ProductGalleryController::class, 'destroy'])->name('product-gallery_destroy');
+
+    //Product
+    Route::get('/transaction', [App\Http\Controllers\Admin\TransactionController::class, 'index'])->name('transaction');
+    Route::get('/transaction/edit/{id}', [App\Http\Controllers\Admin\TransactionController::class, 'edit'])->name('transaction_edit');
+    Route::post('/transaction/update/{id}', [App\Http\Controllers\Admin\TransactionController::class, 'update'])->name('transaction_update');
+    Route::delete('/transaction/delete/{id}', [App\Http\Controllers\Admin\TransactionController::class, 'destroy'])->name('transaction_destroy');
 });
 
 Auth::routes();
