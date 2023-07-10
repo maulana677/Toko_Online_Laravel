@@ -11,7 +11,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $products = Product::with(['galleries'])->Paginate(32);
+        $products = Product::with(['galleries'])->Paginate(10);
 
         return view('pages.category',[
             'categories' => $categories,
@@ -23,7 +23,7 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
         $category = Category::where('slug', $slug)->firstOrFail();
-        $products = Product::with(['galleries'])->where('categories_id', $category->id)->Paginate(32);
+        $products = Product::with(['galleries'])->where('categories_id', $category->id)->Paginate(10);
 
         return view('pages.category',[
             'categories' => $categories,
